@@ -6,6 +6,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import './Table.scss'
 
 
@@ -104,16 +107,27 @@ const TableSection = () => {
   return (
     <div>
       <TableContainer component={Paper} className='table'>
+        <div className="table-heading">
+          <h2>All Customers</h2>
+            <div className='searchAndFilter'>
+              <span className='search'>
+               <SearchOutlinedIcon />
+              <input type="text" placeholder='Search...'/>  
+              </span>
+            </div>
+        </div>
+        <p className="table-subhead">Active Members</p>
+
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className="tabelecell"> Id</TableCell>
-            <TableCell className="tabelecell">Customer Name</TableCell>
-            <TableCell className="tabelecell">Company</TableCell>
-            <TableCell className="tabelecell">Phone Number</TableCell>
-            <TableCell className="tabelecell">Email</TableCell>
-            <TableCell className="tabelecell">Country</TableCell>
-            <TableCell className="tabelecell">Status</TableCell>
+            <TableCell className="tablecell"> Id</TableCell>
+            <TableCell className="tablecell">Customer Name</TableCell>
+            <TableCell className="tablecell">Company</TableCell>
+            <TableCell className="tablecell">Phone Number</TableCell>
+            <TableCell className="tablecell">Email</TableCell>
+            <TableCell className="tablecell">Country</TableCell>
+            <TableCell className="tablecell">Status</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -127,11 +141,19 @@ const TableSection = () => {
               <TableCell align="left">{row.PhoneNo}</TableCell>
               <TableCell align="left">{row.Email}</TableCell>
               <TableCell align="left">{row.country}</TableCell>
-              <TableCell align="left"><button >{row.status}</button></TableCell>
+              {/* <TableCell align="left"><button >{row.status}</button></TableCell> */}
+              <TableCell align="left">
+             <button className={`status-button ${row.status.toLowerCase()}`}>{row.status}</button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
+
+      <Stack spacing={2} className="pagination">
+      {/* <Pagination count={10} shape="rounded" /> */}
+      <Pagination count={10} variant="outlined" shape="rounded" />
+    </Stack>
     </TableContainer>
     </div>
   )
