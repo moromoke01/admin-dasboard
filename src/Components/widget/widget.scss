@@ -1,0 +1,26 @@
+.widget{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    gap: 15px;
+
+    .right{
+        display: flex;
+        flex-direction: column;
+        line-height: 2px;
+
+        p{
+            padding-bottom: 0;
+            margin-bottom: 0;
+            font-weight: lighter;
+            color: rgb(128, 127, 127);
+            font-size: 12px;
+        }
+        h2{
+            font-size: 30px;
+            padding-bottom: 3px;
+            margin-bottom: 4px;
+        }
+    }
+}
