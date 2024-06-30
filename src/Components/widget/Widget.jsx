@@ -1,12 +1,12 @@
 import './widget.scss'
 
-const Widget = ({headline, count, percentage}) => {
+const Widget = ({Icon, headline, count, percentage}) => {
 
  
   return (
     <div className='widget'>
       <div className='left'>
-      {/* {Icon && <Icon className="widget-icon" />} */}
+      <span className="MyWidget-icon">{Icon && <Icon className="widget-icon" />}</span>
       </div>
       <div >
        

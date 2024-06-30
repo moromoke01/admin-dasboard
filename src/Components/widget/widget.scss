@@ -5,6 +5,23 @@
     width: 200px;
     gap: 15px;
 
+    .left{
+
+        .MyWidget-icon{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 7px;
+            border-radius: 50%;
+            background: #35fc77d2;
+            margin: auto;
+        }
+
+        .widget-icon{
+            color: #06722af1;
+        }
+    }
+
     .right{
         display: flex;
         flex-direction: column;
@@ -18,7 +35,7 @@
             font-size: 12px;
         }
         h2{
-            font-size: 30px;
+            font-size: 25px;
             padding-bottom: 3px;
             margin-bottom: 4px;
         }

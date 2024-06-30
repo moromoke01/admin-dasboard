@@ -29,9 +29,10 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='top'>
-        <span className='logo'>Dashboard</span>
+        <span className='logo'></span>
+        <span className='logo-content'>Dashboard</span>
       </div>
-      <hr/>
+      {/* <hr/> */}
       <div className='centre'>
         <ul>
           <li>
@@ -118,7 +119,12 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className='bottom'>
-        Color Option
+        <div className='bottom-ad'>
+          <p>Upgrade to PRO to get access all Features!</p>
+          <button><b>Get Pro Now!</b></button>
+        </div>
+
+
       </div>
     </div>
   )

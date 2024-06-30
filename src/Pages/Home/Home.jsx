@@ -3,9 +3,9 @@ import Navbar from '../../Components/Navbar/Navbar';
 import Widget from '../../Components/widget/Widget';
 import TableSection from '../../Components/Table/TableSection';
 import "./Home.scss";
-// import GroupIcon from '@mui/icons-material/Group';
-// import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-// import DesktopMacOutlinedIcon from '@mui/icons-material/DesktopMacOutlined';
+import GroupIcon from '@mui/icons-material/Group';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import DesktopMacOutlinedIcon from '@mui/icons-material/DesktopMacOutlined';
 
 const Home = () => {
   const widgetData = [
@@ -13,18 +13,21 @@ const Home = () => {
       headline: 'Total Customers',
       count: '5,423',
       percentageCount: '18% this month',
+      icon: GroupIcon
       
     },
     {
-      headline: 'New Users',
-      count: '1,234',
-      percentageCount: '12% this month',
+      headline: 'Members',
+      count: '1,893',
+      percentageCount: '1% this month',
+      icon: AccountCircleIcon
  
     },
     {
-      headline: 'Sales',
-      count: '$45,423',
+      headline: 'Active Now',
+      count: '189',
       percentageCount: '22% this month',
+      icon: DesktopMacOutlinedIcon
       
     }
   ];
