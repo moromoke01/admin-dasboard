@@ -4,11 +4,13 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import StoreIcon from '@mui/icons-material/Store';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-// import LocalShippingIcon from '@mui/icons-material/LocalShipping';
-// import InsertChartIcon from '@mui/icons-material/InsertChart';
-// import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-// import SettingsSystemDaydreamOutlinedIcon from '@mui/icons-material/SettingsSystemDaydreamOutlined';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import TokenIcon from '@mui/icons-material/Token';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import LiveHelpIcon from '@mui/icons-material/LiveHelp';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import user from '../../assets/jane.jpg'
+
 
 const Sidebar = () => {
   const [dropdownState, setDropdownState] = useState({
@@ -16,7 +18,8 @@ const Sidebar = () => {
     products:false,
     customers: false,
     Income:false,
-    Promote: false
+    Promote: false,
+    Help: false
   });
 
  const toggleDropdown = (key) =>{
@@ -29,7 +32,9 @@ const Sidebar = () => {
   return (
     <div className='sidebar'>
       <div className='top'>
-        <span className='logo'></span>
+        <span className='logo'>
+          <TokenIcon />
+        </span>
         <span className='logo-content'>Dashboard</span>
       </div>
       {/* <hr/> */}
@@ -45,7 +50,7 @@ const Sidebar = () => {
           <li onClick={() => toggleDropdown('Product')}>
             <PersonOutlineIcon className="icon"/>
             <span>Product</span>
-            <ArrowDropDownIcon className="dropdown-icon"/>
+            <KeyboardArrowRightIcon className="dropdown-icon"/>
           </li>
           {dropdownState.users && (
             <ul className="dropdown">
@@ -59,7 +64,7 @@ const Sidebar = () => {
           <li onClick={()=> toggleDropdown('Customers')}>
             <StoreIcon className="icon"/>
             <span>Customers</span>
-            <ArrowDropDownIcon className="dropdown-icon" />
+            <KeyboardArrowRightIcon className="dropdown-icon" />
           </li>
           {dropdownState.products && (
             <ul className='dropdown'>
@@ -71,11 +76,11 @@ const Sidebar = () => {
           )}
 
 
-          {/* Orders dropdown */}
+          {/* Income dropdown */}
           <li onClick={()=> toggleDropdown('Income')}>
             <CreditCardIcon className="icon"/>
             <span>Income</span>
-            <ArrowDropDownIcon className='dropdown-icon'/>
+            <KeyboardArrowRightIcon className='dropdown-icon'/>
           </li>
           {dropdownState.orders && (
             <ul className='dropdown'>
@@ -85,11 +90,11 @@ const Sidebar = () => {
             </ul>
           )}
 
-{/* Promote dropdown */}
-<li onClick={()=> toggleDropdown('Promote')}>
-            <CreditCardIcon className="icon"/>
+            {/* Promote dropdown */}
+            <li onClick={()=> toggleDropdown('Promote')}>
+            <SettingsSuggestIcon className="icon"/>
             <span>Promote</span>
-            <ArrowDropDownIcon className='dropdown-icon'/>
+            <KeyboardArrowRightIcon className='dropdown-icon'/>
           </li>
           {dropdownState.orders && (
             <ul className='dropdown'>
@@ -99,23 +104,21 @@ const Sidebar = () => {
             </ul>
           )}
 
+          {/* Help dropdown */}
+            <li onClick={()=> toggleDropdown('Help')}>
+            <LiveHelpIcon className="icon"/>
+            <span>Help</span>
+            <KeyboardArrowRightIcon className='dropdown-icon'/>
+          </li>
+          {dropdownState.orders && (
+            <ul className='dropdown'>
+              <li><span>Send Message</span></li>
+              <li><span>Request a Call</span></li>
+             
+            </ul>
+          )}
 
-          {/* <li>
-            <LocalShippingIcon className="icon"/>
-            <span>Delivery</span>
-          </li>
-          <li>
-            <InsertChartIcon className="icon"/>
-            <span>Stats</span>
-          </li>
-          <li>
-            <NotificationsNoneIcon className="icon"/>
-            <span>Notifications</span>
-          </li>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon"/>
-            <span>System Health</span>
-          </li> */}
+          
         </ul>
       </div>
       <div className='bottom'>
@@ -124,7 +127,16 @@ const Sidebar = () => {
           <button><b>Get Pro Now!</b></button>
         </div>
 
-
+       {/* user dropdown */}
+       <li onClick={()=> toggleDropdown('user')}>
+            <img src={user} alt="user" className='user' />
+           <span>
+              <h4>Evano</h4>
+              <p>Project Manager</p>
+            </span> 
+            <KeyboardArrowDownIcon className='dropdown-icon'/>
+          </li>
+          
       </div>
     </div>
   )
