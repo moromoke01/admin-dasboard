@@ -9,6 +9,8 @@ import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import user from '../../assets/jane.jpg'
 
 
@@ -22,6 +24,8 @@ const Sidebar = () => {
     Help: false
   });
 
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
  const toggleDropdown = (key) =>{
   setDropdownState(prevState => ({
     ...prevState,
@@ -29,8 +33,20 @@ const Sidebar = () => {
   }));
  };
 
+
+   const toggleSidebar = () =>{
+    setSidebarOpen(!sidebarOpen);
+   }
+
   return (
-    <div className='sidebar'>
+    <>
+      {/* <MenuIcon className='menu-icon' onClick={toggleSidebar} />
+      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}> */}
+      {sidebarOpen ? (
+        <CloseIcon className='menu-icon' onClick={toggleSidebar} />) : (
+          <MenuIcon className='menu-icon' onClick={toggleSidebar} />
+        )}
+      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}> 
       <div className='top'>
         <span className='logo'>
           <TokenIcon />
@@ -139,6 +155,7 @@ const Sidebar = () => {
           
       </div>
     </div>
+    </>
   )
 }
 
