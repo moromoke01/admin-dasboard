@@ -1,6 +1,6 @@
 import './Navbar.scss'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-// import WavingHandIcon from '@mui/icons-material/WavingHand';
+import WavingHandIcon from '../../assets/clapping-emoji.png';
 
 
 const Navbar = () => {
@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className='wrapper'>
         <div><p>Hello Evano
-         {/* <WavingHandIcon /> */}
+         <img src={WavingHandIcon} alt="WavingHandIcon"  className="WavingHandIcon"/>
         </p>
         </div>
 

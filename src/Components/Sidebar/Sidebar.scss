@@ -1,3 +1,7 @@
+.menu-icon {
+  display: none;
+}
+
 .sidebar {
   width: 250px;
   background: #fff;
@@ -18,11 +22,6 @@
     padding: 20px;
     font-size: 24px;
     font-weight: bold;
-
-    .menu-icon {
-      display: none;
-      cursor: pointer;
-    }
   }
 
   hr {
@@ -68,6 +67,7 @@
   }
 
   .dropdown {
+    display: block;
     list-style: none;
     padding-left: 20px;
 
@@ -138,7 +138,6 @@
     width: 50px;
     position: absolute;
     height: 100%;
-    z-index: 1000;
 
     &.open {
       transform: translateX(0);
@@ -149,16 +148,21 @@
       padding: 5px;
       margin-bottom: 15px;
 
-      .logo{
+      .logo {
         margin-top: 35px;
-
       }
+
       .logo-content {
         display: none;
       }
 
       .menu-icon {
         display: block;
+        margin: 10px;
+        padding: 10px;
+        border: 2px solid rgba(102, 102, 99, 0.8);
+        border-radius: 10px;
+        cursor: pointer;
         margin-top: 10px;
       }
     }
@@ -177,6 +181,24 @@
         display: none;
       }
 
+      .dropdown {
+        display: block;
+        padding: 10px;
+        background:#5e5c5c;
+        color: #000;
+        position: absolute;
+        left: 100px;
+        background: #fff;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        z-index: 1000;
+
+        li{
+          display: block;
+          padding: 10px;
+        }
+      }
+
       .icon {
         margin-right: 10px;
         color: #5e5c5c;
@@ -186,6 +208,10 @@
       .dropdown-icon {
         display: none;
       }
+    }
+
+    .dropdown-active .dropdown {
+      display: block;
     }
 
     .bottom {

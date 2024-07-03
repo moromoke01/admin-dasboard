@@ -7,6 +7,7 @@ import List from './Pages/List/List';
 import Single from './Pages/Single/Single';
 import New from './Pages/New/New';
 import Signup from './Pages/Auth/Signup';
+import SuccessPage from './Pages/Auth/SuccessPage';
 import { useState, useEffect, useContext } from 'react';
 
 function App() {
@@ -25,8 +26,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Signup />} />
           <Route path="/signup" element={<Signup />} />
+          {/* <Route path="/SuccessPage" element={<SuccessPage />} /> */}
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<PrivateRoute component={Home} />} />
+          <Route path="/SuccessPage" element={<PrivateRoute component={SuccessPage} />} />
           <Route path="/users">
             <Route index element={<List />} />
             <Route path=":userId" element={<Single />} />
