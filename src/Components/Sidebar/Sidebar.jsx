@@ -26,11 +26,21 @@ const Sidebar = () => {
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  // const toggleDropdown = (key) => {
+  //   setDropdownState((prevState) => ({
+  //     ...prevState,
+  //     [key]: !prevState[key],
+  //   }));
+  // };
+
   const toggleDropdown = (key) => {
-    setDropdownState((prevState) => ({
-      ...prevState,
-      [key]: !prevState[key],
-    }));
+    setDropdownState((prevState) => {
+      const newState = { ...prevState, [key]: !prevState[key] };
+      Object.keys(newState).forEach(k => {
+        if (k !== key) newState[k] = false;
+      });
+      return newState;
+    });
   };
 
   const toggleSidebar = () => {
@@ -53,75 +63,85 @@ const Sidebar = () => {
           <ul>
             <li>
               <DashboardIcon className="icon" />
-              <span>Dashboard</span>
+              <span className='menu'>Dashboard</span>
             </li>
 
             {/* Product Dropdown */}
             <li onClick={() => toggleDropdown('products')}>
               <PersonOutlineIcon className="icon" />
-              <span>Products</span>
-              <KeyboardArrowRightIcon className="dropdown-icon" />
+              <span className='menu'>Products</span>
+              {dropdownState.products ? <KeyboardArrowDownIcon className="dropdown-icon" /> : <KeyboardArrowRightIcon className="dropdown-icon" />}
             </li>
             {dropdownState.products && (
-              <ul className="dropdown">
-                <li><span>New Product</span></li>
-                <li><span>Manage Product</span></li>
-                <li><span>Product Reports</span></li>
-              </ul>
+              <div className="dropdown-div">
+                <ul className="dropdown">
+                  <li><span>New Product</span></li>
+                  <li><span>Manage Product</span></li>
+                  <li><span>Product Reports</span></li>
+                </ul>
+              </div>
             )}
 
             {/* Customers Dropdown */}
             <li onClick={() => toggleDropdown('customers')}>
               <StoreIcon className="icon" />
-              <span>Customers</span>
-              <KeyboardArrowRightIcon className="dropdown-icon" />
+              <span className='menu'>Customers</span>
+              {dropdownState.customers ? <KeyboardArrowDownIcon className="dropdown-icon" /> : <KeyboardArrowRightIcon className="dropdown-icon" />}
             </li>
             {dropdownState.customers && (
-              <ul className="dropdown">
-                <li><span>New Customers</span></li>
-                <li><span>Manage Customers</span></li>
-                <li><span>Customers Reports</span></li>
-                <li><span>Customers Settings</span></li>
-              </ul>
+              <div className="dropdown-div">
+                <ul className="dropdown">
+                  <li><span>New Customers</span></li>
+                  <li><span>Manage Customers</span></li>
+                  <li><span>Customers Reports</span></li>
+                  <li><span>Customers Settings</span></li>
+                </ul>
+              </div>
             )}
 
             {/* Income Dropdown */}
             <li onClick={() => toggleDropdown('income')}>
               <CreditCardIcon className="icon" />
-              <span>Income</span>
-              <KeyboardArrowRightIcon className="dropdown-icon" />
+              <span className='menu'>Income</span>
+              {dropdownState.income ? <KeyboardArrowDownIcon className="dropdown-icon" /> : <KeyboardArrowRightIcon className="dropdown-icon" />}
             </li>
             {dropdownState.income && (
-              <ul className="dropdown">
-                <li><span>Expenses</span></li>
-                <li><span>In-flow</span></li>
-              </ul>
+              <div className="dropdown-div">
+                <ul className="dropdown">
+                  <li><span>Expenses</span></li>
+                  <li><span>In-flow</span></li>
+                </ul>
+              </div>
             )}
 
             {/* Promote Dropdown */}
             <li onClick={() => toggleDropdown('promote')}>
               <SettingsSuggestIcon className="icon" />
-              <span>Promote</span>
-              <KeyboardArrowRightIcon className="dropdown-icon" />
+              <span className='menu'>Promote</span>
+              {dropdownState.promote ? <KeyboardArrowDownIcon className="dropdown-icon" /> : <KeyboardArrowRightIcon className="dropdown-icon" />}
             </li>
             {dropdownState.promote && (
-              <ul className="dropdown">
-                <li><span>Promote sales</span></li>
-                <li><span>Promote brand</span></li>
-              </ul>
+              <div className="dropdown-div">
+                <ul className="dropdown">
+                  <li><span>Promote sales</span></li>
+                  <li><span>Promote brand</span></li>
+                </ul>
+              </div>
             )}
 
             {/* Help Dropdown */}
             <li onClick={() => toggleDropdown('help')}>
               <LiveHelpIcon className="icon" />
-              <span>Help</span>
-              <KeyboardArrowRightIcon className="dropdown-icon" />
+              <span className='menu'>Help</span>
+              {dropdownState.help ? <KeyboardArrowDownIcon className="dropdown-icon" /> : <KeyboardArrowRightIcon className="dropdown-icon" />}
             </li>
             {dropdownState.help && (
-              <ul className="dropdown">
-                <li><span>Send Message</span></li>
-                <li><span>Request a Call</span></li>
-              </ul>
+              <div className="dropdown-div">
+                <ul className="dropdown">
+                  <li><span>Send Message</span></li>
+                  <li><span>Request a Call</span></li>
+                </ul>
+              </div>
             )}
           </ul>
         </div>
@@ -138,7 +158,7 @@ const Sidebar = () => {
               <h4>Evano</h4>
               <p>Project Manager</p>
             </span>
-            <KeyboardArrowDownIcon className="dropdown-icon" />
+            {dropdownState.user ? <KeyboardArrowDownIcon className="dropdown-icon" /> : <KeyboardArrowRightIcon className="dropdown-icon" />}
           </li>
         </div>
       </div>

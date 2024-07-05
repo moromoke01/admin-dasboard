@@ -1,24 +1,22 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from './AuthContext';
-import { useNavigate , Link} from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './Auth.scss';
 import AppleIcon from '@mui/icons-material/Apple';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import googleIcon from "../../assets/google-logo.png"
-import facebookIcon from "../../assets/facebook-icon.png"
+import googleIcon from "../../assets/google-logo.png";
+import facebookIcon from "../../assets/facebook-icon.png";
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
-// import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const Signup = () => {
     const [steps, setSteps] = useState(1);
     const [formData, setFormData] = useState({
         step1: { email: '', password: '' },
         step2: { fullName: '', gender: '', contact: '', birthday: '' },
-        step3: {searchAddress: ''},
+        step3: { searchAddress: '' },
         step4: { address: '', apartment: '', city: '', state: '', zip: '' }
-
     });
     const [error, setError] = useState('');
     const { signUp } = useContext(AuthContext);
@@ -62,14 +60,12 @@ const Signup = () => {
             console.log('Form Data:', formData);
             alert('Account created successfully...!');
             navigate('/SuccessPage');
-
         } catch (error) {
             setError(error.message);
             alert('Account creation failed');
         }
     };
 
-              
     const handleChange = (e) => {
         const { name, value } = e.target;
         const currentStepData = { ...formData[`step${steps}`], [name]: value };
@@ -87,9 +83,13 @@ const Signup = () => {
         }
     };
 
-    const handleManualAddress = () =>{
-        setSteps(4);
-    }
+    const handleManualAddress = () => {
+        if (steps === 3) {
+            setSteps(steps + 1);
+            console.log("Advancing to step 4", steps);
+        }
+    };
+
     return (
         <div className='Auth-page'>
             <div className='Auth'>
@@ -97,24 +97,19 @@ const Signup = () => {
                     <>
                         <div className='Auth-head'>
                             <span className='active'>Register</span>
-
                             <Link to='/login' className='tab-link'>
-                              <span>Login</span>
+                                <span>Login</span>
                             </Link>
-
                         </div>
                         <div className='icons'>
-        <span className='auth-head-icons'> <AppleIcon /></span>
-          <span className='auth-head-icons-fb'>
-            <img src={facebookIcon} alt="facebook-icon" />
-             {/* <FacebookIcon /> */}
-          </span>
-         
-          {/* <GoogleIcon /> */}
-          <span className='auth-head-icons'>
-          <img src={googleIcon} alt="googleIcon" />
-          </span>
-        </div>
+                            <span className='auth-head-icons'><AppleIcon /></span>
+                            <span className='auth-head-icons-fb'>
+                                <img src={facebookIcon} alt="facebook-icon" />
+                            </span>
+                            <span className='auth-head-icons'>
+                                <img src={googleIcon} alt="googleIcon" />
+                            </span>
+                        </div>
                         <p className='auth-text'>or register with email</p>
                     </>
                 )}
@@ -136,6 +131,7 @@ const Signup = () => {
                         <h2>Add Address<span className='green-text'>3 of 3</span></h2>
                     </div>
                 )}
+
                 <form onSubmit={handleNextStep}>
                     {steps === 1 && (
                         <>
@@ -146,6 +142,7 @@ const Signup = () => {
                                     value={formData.step1.email}
                                     onChange={handleChange}
                                     className='input-field' />
+                                {error && <p>{error}</p>}
                             </div>
 
                             <div className='form-group'>
@@ -155,6 +152,7 @@ const Signup = () => {
                                     value={formData.step1.password}
                                     onChange={handleChange}
                                     className='input-field' />
+                                {error && <p>{error}</p>}
                             </div>
                         </>
                     )}
@@ -212,51 +210,50 @@ const Signup = () => {
                         </>
                     )}
 
-                     {steps === 3 && (
+                    {steps === 3 && (
                         <>
                             <div className='form-group-search'>
                                 <SearchOutlinedIcon />
-                                 <input type="text" 
-                                 name='searchAddress'
-                                 value={formData.step3.searchAddress}
-                                 onChange={handleChange}
-                                 placeholder='Search for address'/>
+                                <input type="text"
+                                    name='searchAddress'
+                                    value={formData.step3.searchAddress}
+                                    onChange={handleChange}
+                                    placeholder='Search for address' />
                             </div>
                             <p className='text-fade'>Your address is not visible to other users</p>
 
-                           <div className='location-btn'>
-                                <button onClick={handleManualAddress}>Use current location</button>
-                                <button onClick={handleManualAddress}>Add manually</button>
-                           </div>
+                            <div className='location-btn'>
+                                <button type="button" onClick={handleManualAddress}>Use current location</button>
+                                <button type="button" onClick={handleManualAddress}>Add manually</button>
+                            </div>
 
-                           <div className='location-content'>
+                            <div className='location-content'>
                                 <h2><b>Sharing your address shows:</b></h2>
                                 <span>
-                                 <span><PeopleOutlineOutlinedIcon className="step3-icon"/></span>
-                                <p>People near you</p>
+                                    <span><PeopleOutlineOutlinedIcon className="step3-icon" /></span>
+                                    <p>People near you</p>
                                 </span>
-                                 <span>
-                                    <span><AccessTimeIcon className="step3-icon"/></span>
+                                <span>
+                                    <span><AccessTimeIcon className="step3-icon" /></span>
                                     <p>Estimated delivery time</p>
                                 </span>
                                 <span>
-                                  <span><AttachMoneyIcon className="step3-icon"/></span>
-                                  <p>Estimate shipping costs</p>
+                                    <span><AttachMoneyIcon className="step3-icon" /></span>
+                                    <p>Estimate shipping costs</p>
                                 </span>
-                                
-                           </div>
-
-                            
+                            </div>
                         </>
-                            )}
+                    )}
 
                     {steps === 4 && (
                         <>
+
+                        
                             <div className='form-group'>
                                 <p>Street address</p>
                                 <input type="text"
                                     name="address"
-                                    value={formData.step4.address}
+                                    value={formData?.step4?.address}
                                     onChange={handleChange}
                                     required
                                     className='input-field' />
@@ -264,7 +261,7 @@ const Signup = () => {
 
                             <input type="text"
                                 name="apartment"
-                                value={formData.step4.apartment}
+                                value={formData?.step4?.apartment}
                                 onChange={handleChange}
                                 className='input-special'
                                 required
@@ -274,7 +271,7 @@ const Signup = () => {
                                 <p>City</p>
                                 <input type="text"
                                     name="city"
-                                    value={formData.step4.city}
+                                    value={formData?.step4?.city}
                                     onChange={handleChange}
                                     className='input-field'
                                     required
@@ -286,7 +283,7 @@ const Signup = () => {
                                     <p>State</p>
                                     <input type="text"
                                         name="state"
-                                        value={formData.step4.state}
+                                        value={formData?.step4?.state}
                                         onChange={handleChange}
                                         className='input-field'
                                         required
@@ -297,7 +294,7 @@ const Signup = () => {
                                     <p>Zip code</p>
                                     <input type="text"
                                         name="zip"
-                                        value={formData.step4.zip}
+                                        value={formData?.step4?.zip}
                                         onChange={handleChange}
                                         className='input-field'
                                         required
@@ -311,7 +308,6 @@ const Signup = () => {
                         <button type='submit' className='submit-button' onClick={handleNextStep}>
                             {steps < 2 ? 'Create account' : 'Save Information'}
                         </button>
-
                     )}
 
                     {steps === 1 && (
